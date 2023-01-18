@@ -8,17 +8,23 @@ public class IronBall : MonoBehaviour
     [SerializeField] Vector3 force;
     [SerializeField] public Rigidbody rb;
     [SerializeField] public Transform prefab;
+    public GameObject GameOverCanvas;
     void Start()
     {
         Transform myTransform = this.transform;
         Vector3 pos = myTransform.position;
-        force = new Vector3(20, 0, 0);
+        force = new Vector3(1, 0, 0);
     }
 
     void Update()
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(force, ForceMode.VelocityChange);
+        Transform myTransform = this.transform;
+        if(myTransform.position.x == 100)
+        {
+            this.transform.position.x = -80;
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -31,7 +37,7 @@ public class IronBall : MonoBehaviour
                 hitPos = point.point;
             }
             //Instantiate(prefab, hitPos, Quaternion.identity);
-            rb.AddForce(transform.forward * thrust, ForceMode.Impulse);
+            GameOverCanvas.SetActive(true);
         }
     }
 }
