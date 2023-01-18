@@ -23,7 +23,7 @@ public class IronBall : MonoBehaviour
         Transform myTransform = this.transform;
         if(myTransform.position.x == 100)
         {
-            this.transform.position.x = -80;
+            //this.transform.position.x = -80;
         }
     }
 
