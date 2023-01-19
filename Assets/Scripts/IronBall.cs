@@ -5,20 +5,20 @@ using UnityEngine;
 public class IronBall : MonoBehaviour
 {
     [SerializeField] private float thrust = 1.0f;
-    [SerializeField] Vector3 force;
-    [SerializeField] public Rigidbody rb;
-    [SerializeField] public Transform prefab;
-    public GameObject GameOverCanvas;
+    [SerializeField] private Vector3 force;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform prefab;
+    [SerializeField] private GameObject gameOverCanvas;
     void Start()
     {
-        Transform myTransform = this.transform;
-        Vector3 pos = myTransform.position;
+        //Transform myTransform = this.transform;
+        //Vector3 pos = myTransform.position;
         force = new Vector3(1, 0, 0);
     }
 
     void Update()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         rb.AddForce(force, ForceMode.VelocityChange);
         Transform myTransform = this.transform;
         if(myTransform.position.x == 100)
@@ -36,8 +36,9 @@ public class IronBall : MonoBehaviour
             {
                 hitPos = point.point;
             }
+            // T.B.D 衝突時のエフェクトを生成
             //Instantiate(prefab, hitPos, Quaternion.identity);
-            GameOverCanvas.SetActive(true);
+            gameOverCanvas.SetActive(true);
         }
     }
 }
