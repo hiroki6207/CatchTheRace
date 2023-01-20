@@ -11,8 +11,8 @@ public class IronBall : MonoBehaviour
     [SerializeField] private GameObject gameOverCanvas;
     void Start()
     {
-        //Transform myTransform = this.transform;
-        //Vector3 pos = myTransform.position;
+        prefab = this.transform;
+        Vector3 pos = prefab.position;
         force = new Vector3(1, 0, 0);
     }
 
@@ -20,11 +20,6 @@ public class IronBall : MonoBehaviour
     {
         //rb = GetComponent<Rigidbody>();
         rb.AddForce(force, ForceMode.VelocityChange);
-        Transform myTransform = this.transform;
-        if(myTransform.position.x == 100)
-        {
-            //this.transform.position.x = -80;
-        }
     }
 
     public void OnCollisionEnter(Collision collision)
