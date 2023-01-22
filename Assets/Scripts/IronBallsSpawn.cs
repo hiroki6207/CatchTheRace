@@ -20,12 +20,15 @@ public class IronBallsSpawn : MonoBehaviour
     private void Update()
     {
 
-        StartCoroutine(IronBallCreate());
+        //StartCoroutine(IronBallCreate());
     }
 
     public IEnumerator IronBallCreate()
     {
-        yield return new WaitForSeconds(5.0f);
-        Instantiate(ironBallPrefab, pos, Quaternion.identity);
+        while(true)
+        {
+            yield return new WaitForSeconds(5.0f);
+            Instantiate(ironBallPrefab, pos, Quaternion.identity);
+        }
     }
 }

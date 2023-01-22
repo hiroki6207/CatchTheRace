@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class IronBall : MonoBehaviour
 {
@@ -26,14 +29,16 @@ public class IronBall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && rb != null)
         {
-            Vector3 hitPos = new Vector3(0, 0, 0);
-            foreach (ContactPoint point in collision.contacts)
-            {
-                hitPos = point.point;
-            }
+            Time.timeScale = 0;
             // T.B.D 衝突時のエフェクトを生成
-            //Instantiate(prefab, hitPos, Quaternion.identity);
             gameOverCanvas.SetActive(true);
+            StartCoroutine(RetryCoroutine());
         }
+    }
+
+    public IEnumerator RetryCoroutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
