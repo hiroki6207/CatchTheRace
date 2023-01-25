@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using DG.Tweening;
 
 public class IronBall : MonoBehaviour
 {
@@ -29,16 +30,14 @@ public class IronBall : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && rb != null)
         {
-            Time.timeScale = 0;
+            DOVirtual.DelayedCall(3.0f, Retry, false);
             // T.B.D 衝突時のエフェクトを生成
-            gameOverCanvas.SetActive(true);
-            StartCoroutine(RetryCoroutine());
         }
     }
 
-    public IEnumerator RetryCoroutine()
+    public void Retry()
     {
-        yield return new WaitForSeconds(5.0f);
+        gameOverCanvas.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
